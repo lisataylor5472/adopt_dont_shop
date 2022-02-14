@@ -20,6 +20,12 @@ class Shelter < ApplicationRecord
     find_by_sql("SELECT * FROM shelters ORDER BY name DESC")
   end
 
+  def self.get_name_with_sql(id)
+    find_by_sql( "SELECT *
+                  FROM shelters
+                  WHERE id = #{id}")[0]
+  end
+
   def pet_count
     pets.count
   end
