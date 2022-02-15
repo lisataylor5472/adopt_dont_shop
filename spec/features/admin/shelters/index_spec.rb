@@ -32,11 +32,7 @@ RSpec.describe 'the admin/shelter index' do
     end
   end
 
-# As a visitor
-# When I visit the admin shelter index ('/admin/shelters')
-# Then I see a section for "Shelter's with Pending Applications"
-# And in this section I see the name of every shelter that has a pending application
-  it '/admin/shelters index shows link and navigates to show page' do
+  it "/admin/shelters has shelter's with pending apps section" do
     shelter_1 = Shelter.create!(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: true, rank: 9)
     shelter_2 = Shelter.create!(name: 'Denver shelter', city: 'Denver, CO', foster_program: true, rank: 9)
     shelter_3 = Shelter.create!(name: 'Maxfund', city: 'Denver, CO', foster_program: true, rank: 9)
@@ -52,7 +48,7 @@ RSpec.describe 'the admin/shelter index' do
 
     visit "/admin/shelters"
 
-    within('#shelter_apps_pending') do
+    within('#pending_apps') do
       expect(page).to have_content("#{shelter_1.name}")
       expect(page).to have_content("#{shelter_2.name}")
       expect(page).to_not have_content("#{shelter_3.name}")
