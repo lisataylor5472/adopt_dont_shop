@@ -29,7 +29,6 @@ RSpec.describe 'admin show page' do
       expect(page).to have_button("Approve")
       expect(page).to have_button("Reject")
     end
-    save_and_open_page
   end
 
   xit 'approve / reject buttons update status' do
