@@ -1,0 +1,19 @@
+<h1>Application ID: <%= @application.id %> </h1>
+
+<h2> Pets Being Applied For: <h2>
+<div id="pets_apps">
+  <% @application.pet_applications.each do |pet_app| %>
+    <div id="pet_apps-<%= pet_app.id %>">
+      <%= pet_app.pet.name %> <br>
+          <%= form_with url: "/pet_applications/#{pet_app.id}", method: :patch, local: true do |form| %>
+               <%= form.hidden_field :status, :value => "Approved"%>
+               <%= form.submit "Approve" %>
+          <% end %>
+          <%= form_with url: "/pet_applications/#{pet_app.id}", method: :patch, local: true do |form| %>
+               <%= form.hidden_field :status, :value => "Rejected"%>
+               <%= form.submit "Reject" %>
+          <% end %>
+      <p><%= pet_app.application.status %></p>
+    </div>
+  <% end %>
+</div>
